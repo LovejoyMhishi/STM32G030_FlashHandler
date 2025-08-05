@@ -1,6 +1,6 @@
 
 /* ******************* ──────────────────────────────────────────────────────────────── ******************* */
-/*                            																                *
+/*                            			                					    *
  *              ╔═════════════════════════════════════════════════════════════════════════╗                 *
  *               ║                            FILE: Flash.c                              ║                  *
  *               ║                            AUTHOR: Lovejoy Mhishi                     ║                  *
@@ -11,34 +11,34 @@
  * This driver provides low-level functions to write to and read from the internal Flash memory             *
  * of STM32 microcontrollers.                                                                               *
  *                                                                                                          *
- * Key Features:                                  		        									        *
- *   - Writes a sequence of bytes to a specified Flash address.										        *
- *   - Reads a sequence of bytes from Flash into a buffer.										            *
- *   - Suitable for storing calibration data, device settings, or logs.								        *
- * 																									        *
- * Intended Use:                                                                   					        *
- *   - To store data when the MCU looses power,  counters, or configuration values).       			        *
- *																									        *
- * Dependencies: 															 						        *
- *   - STM32 HAL library																			        *
- *   - Device-specific memory map (defined in main.h)												        *
- *																								            *
- * Notes:																							        *
- *   - Flash write operations require memory to be erased beforehand.								        *
- *   - Ensure address alignment and Flash sector access rules are followed.							        *
- *     Reduce the total Flash size by 2KB to prevent accidental overwriting of application code.	        *
- *     For example, reserve 2 pages (2KB) at the end of Flash as shown below:						        *
- *   - Update the Flash size in the linker script to reserve space for user data storage.          	        *
- *																								    	    *
- *     MEMORY																					  	        *
- *     {																							        *
- *       RAM    (xrw) : ORIGIN = 0x20000000, LENGTH = 8K											        *
+ * Key Features:                                  		                                            *
+ *   - Writes a sequence of bytes to a specified Flash address.					            *
+ *   - Reads a sequence of bytes from Flash into a buffer.	                                            *
+ *   - Suitable for storing calibration data, device settings, or logs.		             		    *
+ * 								                                	    *
+ * Intended Use:                                                                   		            *
+ *   - To store data when the MCU looses power,  counters, or configuration values).       	            *
+ *										       		            *
+ * Dependencies: 									 		    *
+ *   - STM32 HAL library									            *
+ *   - Device-specific memory map (defined in main.h)							    *
+ *					                                                                    *
+ * Notes:										                    *
+ *   - Flash write operations require memory to be erased beforehand.	                                    *
+ *   - Ensure address alignment and Flash sector access rules are followed.	                            *
+ *     Reduce the total Flash size by 2KB to prevent accidental overwriting of application code.	    *
+ *     For example, reserve 2 pages (2KB) at the end of Flash as shown below:                               *
+ *   - Update the Flash size in the linker script to reserve space for user data storage.          	    *
+ *													    *
+ *     MEMORY												    *
+ *     {												    *
+ *       RAM    (xrw) : ORIGIN = 0x20000000, LENGTH = 8K						    *
  *       FLASH  (rx)  : ORIGIN = 0x08000000, LENGTH = 32K - 2K   ***── Reserve 2KB for Flash storage ──***  *
- *     }																						 	        *
- *         																							        *
- *   - Always verify that the Flash operations do not conflict with the main program region.		        *
- *   - Use absolute memory addresses carefully when reading/writing to internal Flash.				        *
- *																									        */
+ *     }												    *
+ *         												    *
+ *   - Always verify that the Flash operations do not conflict with the main program region.		    *
+ *   - Use absolute memory addresses carefully when reading/writing to internal Flash.			    *
+ *							   					            */
 /* ******************* ──────────────────────────────────────────────────────────────── ******************* */
 
 
@@ -242,6 +242,7 @@ uint64_t read_flash_memory(uint32_t memory_address) {
 
 	return((uint64_t)MSB<<32|LSB);
 }
+
 
 
 
